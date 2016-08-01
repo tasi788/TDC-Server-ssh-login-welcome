@@ -1,0 +1,25 @@
+#!/bin/bash
+
+echo -e "\e[1;5;32;47m                       ### Welcome to TDC's Server ###                          \e[0m"
+printf "\E[1;33m"
+echo "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+echo "              .-. "
+echo "        .-'``(|||) "
+echo "      ,\`\\ \\    \`-\`.          ______   _____     ______"
+echo "     /   \\ '\`\`-.   \`         /\\__  _\\ /\\  __-.  /\\  ___\\ "
+echo "  .-.  ,       \`___:         \\/_/\\ \\/ \\ \\ \\/\\ \\ \\ \\ \\____"
+echo " (:::) :        ___             \\ \\_\\  \\ \\____-  \\ \\_____\ "
+echo "  \`-\`  \`       ,   :             \\/_/   \\/____/   \\/_____/"
+echo "    \   / ,..-\`   ,"
+echo "     \`./ /    .-.\`"
+echo "        \`-..-(   ) "
+echo "              \`-\` "
+echo "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+printf "\E[1;36m"
+echo CPU使用率: `top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}'`%
+FREE_DATA=`free -m | grep Mem`
+CURRENT=`echo $FREE_DATA | cut -f3 -d' '`
+TOTAL=`echo $FREE_DATA | cut -f2 -d' '`
+echo RAM使用率: $(echo "scale = 2; $CURRENT/$TOTAL*100" | bc)%
+echo HDD掛載點1剩餘空間: `df -lh | awk '{if ($6 == "/") { print $4 }}' | head -1 ` \(`df -lh | awk '{if ($6 == "/") { print $5 }}' | head -1 `\)
+echo HDD掛載點2剩餘空間: `df -lh | awk '{if ($6 == "/data") { print $4 }}' | head -1 ` \(`df -lh | awk '{if ($6 == "/data") { print $5 }}' | head -1 `\)
